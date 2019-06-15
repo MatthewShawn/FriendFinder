@@ -50,8 +50,7 @@ module.exports = function(app) {
 
     app.post("/api/clear", function(req, res) {
         // Empty out the arrays of data
-        tableData.length = 0;
-        waitListData.length = 0;
+        friendData.length = 0;
 
         res.json({ ok: true });
     });
