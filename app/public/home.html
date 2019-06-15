@@ -21,17 +21,66 @@
             <hr>
             <a href="/survey"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> Find a Friend</button></a>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
 
+                <!-- Current Friends Stored -->
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Current Possible Friends</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul id="friendList" class="list-group"></ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <hr>
         <footer class="footer">
             <div class="container">
-                <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
+                <!--<p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/MatthewShawn/FriendFinder">GitHub Repo</a></p>-->
+                <p><button type="submit" class="btn btn-primary btn-md" id="search-btn"><span class="fa fa-search"></span> API Friends List</button> | <a href="https://github.com/MatthewShawn/FriendFinder">GitHub Repo</a></p>
+
             </div>
         </footer>
     </div>
 
+    <script type="text/javascript">
+        $("#search-btn").on("click", function() {
 
+            // Using a RegEx Pattern to remove spaces from searchedCharacter
+            // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+            // Not neede for this homework...mostly sure...maybe this will be the "find some matches" button.
+            //searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+
+            $.get("/api/friends/", function(data) {
+                console.log(data);
+                // Here we then log the friendData to console, where it will show up as an object.
+                console.log(friendData);
+                console.log("------------------------------------");
+
+                // Loop through and display each of the customers
+                for (var i = 0; i < friendData.length; i++) {
+
+                    // Get a reference to the tableList element and populate it with tables
+                    var friendList = $("#friendList");
+
+                    // Then display the fields in the HTML (Section Name, Date, URL)
+                    var listItem = $("<li class='list-group-item mt-4'>");
+
+                    listItem.append(
+
+                        $("<h2>").text("Name: " + friendData[i].name),
+                        $("<img>").src(friendData[i].photo)
+                    );
+
+                    friendList.append(listItem);
+                }
+            });
+        });
+    </script>
 
 </body>
 
