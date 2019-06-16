@@ -22,14 +22,10 @@ module.exports = function(app) {
         res.json(friendData);
     });
 
-    // API POST Requests
-    // Below code handles when a user submits a form and thus submits data to the server.
-    // In each of the below cases, when a user submits form data (a JSON object)
-    // ...the JSON is pushed to the appropriate JavaScript array
-    // (ex. User fills out a reservation request... this data is then sent to the server...
-    // Then the server saves the data to the tableData array)
-    // ---------------------------------------------------------------------------
 
+    // The matchVal function takes two objects of type friendList[x], and calculates
+    // the difference.  Then it adds that to the total difference.  Once all the 
+    // scores have been compared/calculated, the total difference is returned.
     var matchVal = function(thing1, thing2) {
         var theValue = 0;
         var tempVal = 0;
@@ -40,22 +36,25 @@ module.exports = function(app) {
         }
         return theValue;
     }
+
+    // API POST Requests
+    // Below code handles when a user submits a form and thus submits data to the server.
+    // In each of the below cases, when a user submits form data (a JSON object)
+    // ...the JSON is pushed to the appropriate JavaScript array
+    // 
+    // ---------------------------------------------------------------------------
     app.post("/api/friends", function(req, res) {
-        // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-        // It will do this by sending out the value "true" have a table
-        // req.body is available since we're using the body parsing middleware
-        //if (friendData.length < 5) {
-        // res.json(true);
-        // } else {
-        //   waitListData.push(req.body);
-        //  res.json(false);
-        //}
+        //
+
         var indexOfMatch = 0;
         var valueOfMatch = 99; // highest possible mismatch is currently 40
         // Ok, find a the most compatible match, now that we have everything...
         for (var i = 0; i < friendData.length; i++) {
+            // For each potential match in the list, find the match value.
             var tempValueOfMatch = matchVal(req.body, friendData[i]);
-            console.log(friendData[i].name + "has a value of match of: " + tempValueOfMatch);
+            console.log(friendData[i].name + " has a value of match of: " + tempValueOfMatch);
+            // If the match value calculated is BETTER than the current best match, then
+            // switch to the new match.
             if (tempValueOfMatch < valueOfMatch) {
                 //console.log("less than condition found");
                 console.log(tempValueOfMatch + " is less than " + valueOfMatch);
@@ -63,7 +62,10 @@ module.exports = function(app) {
                 valueOfMatch = tempValueOfMatch;
             }
         }
+        // Put the add to the friend list AFTER we calculate a match,
+        // so we aren't comparing against ourselves...
         friendData.push(req.body);
+        // Return the match
         return (res.json(friendData[indexOfMatch]));
     });
 

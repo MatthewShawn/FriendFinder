@@ -1,5 +1,20 @@
 # FriendFinder
 
+The functionality of the app works, however the manipulation for jpg photos has some issues.  All the solutions from the internet did not work.  I put a copy of the jpg file everywhere, to see if it was a path-ing issue.  It isn't.  I am sure it is something simple that I am not grasping.
+
+To seed this app, I put in characters from a video game and randomly made up the match numbers.  I left in some debug code, so that the grader can see the matching mathematics in action, and verify that they work.  Check the server console!
+
+I left in the "clear" post api, though I never had occasion to use it.  I left it, just in case it can help the grader.
+
+The API Friends List at the footer of the screens is left in to
+provide the grader with access directly to the friendList, so
+that he/she can see the data added.  It, and the GitHub Repo
+buttons are ONE WAY convenience links.
+
+
+
+***************Instructions from class***************
+
 Friend Finder - Node and Express Servers
 
 
