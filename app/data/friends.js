@@ -5,6 +5,7 @@
 // No offense, Matthew.
 // But you could have it be an empty array as well.
 // ===============================================================================
+var path = require("path");
 
 var friendList = [{
     name: "Matthew",

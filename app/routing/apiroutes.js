@@ -30,18 +30,37 @@ module.exports = function(app) {
     // Then the server saves the data to the tableData array)
     // ---------------------------------------------------------------------------
 
+    var matchVal = function(thing1, thing2) {
+        var theValue = 0;
+        var tempVal = 0;
+        for (var idx = 0; idx < thing1.scores.length; idx++) {
+            tempVal = thing1.scores[idx] - thing2.scores[idx];
+            if (tempVal < 0) { tempVal = tempVal * -1; }
+            theValue = theValue + tempVal;
+        }
+        return theValue;
+    }
     app.post("/api/friends", function(req, res) {
         // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
         // It will do this by sending out the value "true" have a table
         // req.body is available since we're using the body parsing middleware
         //if (friendData.length < 5) {
-        friendData.push(req.body);
-
         // res.json(true);
         // } else {
         //   waitListData.push(req.body);
         //  res.json(false);
         //}
+        var indexOfMatch = 0;
+        var valueOfMatch = 99; // highest possible mismatch is currently 40
+        // Ok, find a the most compatible match, now that have everything...
+        for (var i = 0; i < friendData.length; i++) {
+            var tempValueOfMatch = matVal(req.body, friendData[i]);
+            if (tempValueOfMatch < valueOfMatch) {
+                indexOfMatch = i;
+            }
+        }
+        friendData.push(req.body);
+        return (res.json(friendData[indexOfMatch]));
     });
 
     // ---------------------------------------------------------------------------
