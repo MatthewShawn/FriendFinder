@@ -74,9 +74,12 @@
                         $("<h2>").text("Name: " + friendData[i].name)
                     );
                     friendList.append(listItem);
-                    friendList.append($("<li>", {
-                        html: '<img src="./salvador.jpg" />'
-                    }));
+                    // These were all advertised to work...they did not.
+                    // I am presuming that even a good photo will not work.
+                    // Somehow, I am not creating the html correctly.
+                    // friendList.append($("<li>", {
+                    //     html: '<img src="./salvador.jpg" />'
+                    // }));
                     friendList.append($("<li>", {
                         html: '<img src="' + friendData[i].photo + '" />'
                     }));

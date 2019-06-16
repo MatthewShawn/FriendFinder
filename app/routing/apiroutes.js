@@ -34,7 +34,7 @@ module.exports = function(app) {
         var theValue = 0;
         var tempVal = 0;
         for (var idx = 0; idx < thing1.scores.length; idx++) {
-            tempVal = thing1.scores[idx] - thing2.scores[idx];
+            tempVal = parseInt(thing1.scores[idx]) - parseInt(thing2.scores[idx]);
             if (tempVal < 0) { tempVal = tempVal * -1; }
             theValue = theValue + tempVal;
         }
@@ -52,11 +52,15 @@ module.exports = function(app) {
         //}
         var indexOfMatch = 0;
         var valueOfMatch = 99; // highest possible mismatch is currently 40
-        // Ok, find a the most compatible match, now that have everything...
+        // Ok, find a the most compatible match, now that we have everything...
         for (var i = 0; i < friendData.length; i++) {
-            var tempValueOfMatch = matVal(req.body, friendData[i]);
+            var tempValueOfMatch = matchVal(req.body, friendData[i]);
+            console.log(friendData[i].name + "has a value of match of: " + tempValueOfMatch);
             if (tempValueOfMatch < valueOfMatch) {
+                //console.log("less than condition found");
+                console.log(tempValueOfMatch + " is less than " + valueOfMatch);
                 indexOfMatch = i;
+                valueOfMatch = tempValueOfMatch;
             }
         }
         friendData.push(req.body);

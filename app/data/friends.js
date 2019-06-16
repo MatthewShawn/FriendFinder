@@ -8,7 +8,7 @@
 var path = require("path");
 
 var friendList = [{
-    name: "Matthew",
+    name: "Salvador",
     photo: "./salvador.jpg",
     scores: [
         5,
@@ -20,6 +20,96 @@ var friendList = [{
         2,
         5,
         4,
+        1
+    ]
+}, {
+    name: "Gaige",
+    photo: "./gaige.jpg",
+    scores: [
+        5,
+        5,
+        4,
+        4,
+        3,
+        3,
+        2,
+        2,
+        1,
+        1
+    ]
+}, {
+    name: "Maya",
+    photo: "./siren2.jpg",
+    scores: [
+        4,
+        4,
+        2,
+        2,
+        1,
+        1,
+        3,
+        3,
+        5,
+        5
+    ]
+}, {
+    name: "Jack",
+    photo: "./evilincarnate.jpg",
+    scores: [
+        5,
+        1,
+        5,
+        1,
+        5,
+        1,
+        5,
+        5,
+        1,
+        1
+    ]
+}, {
+    name: "Lilith",
+    photo: "./firehawk.jpg",
+    scores: [
+        5,
+        4,
+        3,
+        2,
+        1,
+        2,
+        3,
+        4,
+        5,
+        5
+    ]
+}, {
+    name: "Claptrap",
+    photo: "./dapper.jpg",
+    scores: [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+    ]
+}, {
+    name: "Mordecai",
+    photo: "./birdlover2.jpg",
+    scores: [
+        5,
+        3,
+        1,
+        3,
+        5,
+        1,
+        3,
+        5,
+        3,
         1
     ]
 }];
