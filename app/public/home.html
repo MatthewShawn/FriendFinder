@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Star Wars - Express</title>
+    <title>Friend Finder</title>
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -55,8 +55,7 @@
             // Not neede for this homework...mostly sure...maybe this will be the "find some matches" button.
             //searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
 
-            $.get("/api/friends/", function(data) {
-                console.log(data);
+            $.get("/api/friends/", function(friendData) {
                 // Here we then log the friendData to console, where it will show up as an object.
                 console.log(friendData);
                 console.log("------------------------------------");
@@ -69,14 +68,22 @@
 
                     // Then display the fields in the HTML (Section Name, Date, URL)
                     var listItem = $("<li class='list-group-item mt-4'>");
-
+                    //var listImage = $("<li><img src=" + friendData[i].photo + " /img></li>");
+                    //console.log(listImage);
                     listItem.append(
-
-                        $("<h2>").text("Name: " + friendData[i].name),
-                        $("<img>").src(friendData[i].photo)
+                        $("<h2>").text("Name: " + friendData[i].name)
                     );
-
                     friendList.append(listItem);
+                    friendList.append($("<li>", {
+                        html: '<img src="./salvador.jpg" />'
+                    }));
+                    friendList.append($("<li>", {
+                        html: '<img src="' + friendData[i].photo + '" />'
+                    }));
+                    console.log($("<li>", {
+                        html: '<img src="' + friendData[i].photo + '" />'
+                    }));
+
                 }
             });
         });
